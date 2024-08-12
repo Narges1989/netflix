@@ -85,6 +85,7 @@ def plot(X: np.ndarray, mixture: GaussianMixture, post: np.ndarray,
 def rmse(X, Y):
     return np.sqrt(np.mean((X - Y)**2))
 
+
 def bic(X: np.ndarray, mixture: GaussianMixture,
         log_likelihood: float) -> float:
     """Computes the Bayesian Information Criterion for a
@@ -98,4 +99,7 @@ def bic(X: np.ndarray, mixture: GaussianMixture,
     Returns:
         float: the BIC for this mixture
     """
-    raise NotImplementedError
+    n,d = X.shape
+    K,_ = mixture.mu.shape
+    p = K*d + K +K-1
+    return log_likelihood - 0.5*p*np.log(n)

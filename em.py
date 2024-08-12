@@ -102,7 +102,7 @@ def run(X: np.ndarray, mixture: GaussianMixture,
     while (prev_cost is None or cost - prev_cost > (1e-6)*abs(cost)):
         prev_cost = cost
         post, cost = estep(X, mixture)
-        mixture = mstep(X, post)
+        mixture = mstep(X, post, mixture)
 
     return mixture, post, cost
 
